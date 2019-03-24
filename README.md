@@ -12,7 +12,7 @@ paths to the same page.
 
 `gatsby-plugin-canonical-urls` and `gatsby-plugin-react-helmet` are plugins that do not always play well together.
 The first one always inserts a default canonical url, but doesn't allow to override that value in an easy way.
-When trying to use react helmet to override `gatby-plugin-canonical-urls` default url, you will end up with
+When trying to use react helmet to override `gatsby-plugin-canonical-urls` default url, you will end up with
 two canonical tags.
 
 This plugin, as writes the default canonical url using react helmet, allows to override default canonical url just
@@ -29,7 +29,7 @@ using the standard react helmet api.
 plugins: [
   `gatsby-plugin-react-helmet`,
   {
-    resolve: `gatsby-plugin-canonical-urls`,
+    resolve: `gatsby-plugin-react-helmet-canonical-urls`,
     options: {
       siteUrl: `https://www.example.com`,
     },
