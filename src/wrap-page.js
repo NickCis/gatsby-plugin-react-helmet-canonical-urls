@@ -9,7 +9,7 @@ module.exports = ({ element, props }, pluginOptions) => {
                 props.location.pathname !== "/"
                     ? props.location.pathname || ""
                     : "";
-        else path = props.location.pathname || "";
+        else path = props.location.pathname || "/";
 
         const myUrl = `${pluginOptions.siteUrl}${path}${props.location.search}${
             props.location.hash
