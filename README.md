@@ -43,3 +43,6 @@ a `rel=canonical` e.g.
 ```html
 <link rel="canonical" href="http://www.example.com/about-us/" />
 ```
+
+Additional `options`:
+- `noTrailingSlash` (default `false`): it will remove the trailing slash from canonical link. Use this option if you use [`gatsby-plugin-remove-trailing-slashes`](https://www.npmjs.com/package/gatsby-plugin-remove-trailing-slashes)
