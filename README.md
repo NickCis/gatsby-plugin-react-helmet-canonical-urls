@@ -27,15 +27,14 @@ using the standard react helmet api.
 ```javascript
 // In your gatsby-config.js
 plugins: [
-    `gatsby-plugin-react-helmet`,
-    {
-        resolve: `gatsby-plugin-react-helmet-canonical-urls`,
-        options: {
-            siteUrl: `https://www.example.com`,
-            noTrailingSlash: true
-        }
-    }
-];
+  `gatsby-plugin-react-helmet`,
+  {
+    resolve: `gatsby-plugin-react-helmet-canonical-urls`,
+    options: {
+      siteUrl: `https://www.example.com`,
+    },
+  },
+]
 ```
 
 With the above configuration, the plugin will add to the head of every HTML page
@@ -45,4 +44,5 @@ a `rel=canonical` e.g.
 <link rel="canonical" href="http://www.example.com/about-us/" />
 ```
 
-Use the `noTrailingSlash` option if you use `gatsby-plugin-remove-trailing-slashes` (or other similar set up to remove trailing slashes)
+Additional `options`:
+- `noTrailingSlash` (default `false`): it will remove the trailing slash from canonical link. Use this option if you use [`gatsby-plugin-remove-trailing-slashes`](https://www.npmjs.com/package/gatsby-plugin-remove-trailing-slashes)
