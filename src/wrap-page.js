@@ -2,8 +2,7 @@ const React = require('react');
 const { Helmet } = require('react-helmet');
 
 const isExcluded = (collection, element) =>
-  Array.isArray(collection) &&
-  collection.indexOf(element.replace(/\/+$/, '')) !== -1;
+  Array.isArray(collection) && collection.includes(element.replace(/\/+$/, ''));
 
 module.exports = ({ element, props }, pluginOptions) => {
   if (
