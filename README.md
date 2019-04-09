@@ -34,7 +34,7 @@ plugins: [
       siteUrl: `https://www.example.com`,
     },
   },
-]
+];
 ```
 
 With the above configuration, the plugin will add to the head of every HTML page
@@ -45,4 +45,20 @@ a `rel=canonical` e.g.
 ```
 
 Additional `options`:
+
 - `noTrailingSlash` (default `false`): it will remove the trailing slash from canonical link. Use this option if you use [`gatsby-plugin-remove-trailing-slashes`](https://www.npmjs.com/package/gatsby-plugin-remove-trailing-slashes)
+- `exclude` (Array of `string`, default `undefined`): exclude pages from being added a canonical url. Useful when combining with other SEO-related meta tags like _noindex_.
+
+```JS
+plugins: [
+...
+    {
+      resolve: 'gatsby-plugin-react-helmet-canonical-urls',
+      options: {
+        siteUrl: "https://myurl.com",
+        exclude: ["/exclude-this-path", "/and-this-one"],
+      },
+    },
+...
+]
+```
