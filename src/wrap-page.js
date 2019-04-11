@@ -13,9 +13,11 @@ module.exports = ({ element, props }, pluginOptions) => {
     let pathname = props.location.pathname || '/';
 
     if (pluginOptions.noTrailingSlash && pathname.endsWith('/'))
-      pathname = pathname.substring(0, pathname.length -1);
+      pathname = pathname.substring(0, pathname.length - 1);
 
-    const myUrl = `${pluginOptions.siteUrl}${pathname}${props.location.search}${props.location.hash}`;
+    const myUrl = `${pluginOptions.siteUrl}${pathname}${props.location.search}${
+      props.location.hash
+    }`;
 
     return (
       <>
@@ -25,7 +27,7 @@ module.exports = ({ element, props }, pluginOptions) => {
               rel: 'canonical',
               key: myUrl,
               href: myUrl,
-            }
+            },
           ]}
         />
         {element}
