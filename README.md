@@ -45,4 +45,6 @@ a `rel=canonical` e.g.
 ```
 
 Additional `options`:
+
 - `noTrailingSlash` (default `false`): it will remove the trailing slash from canonical link. Use this option if you use [`gatsby-plugin-remove-trailing-slashes`](https://www.npmjs.com/package/gatsby-plugin-remove-trailing-slashes)
+- `exclude` (Array of `string`, default `undefined`): exclude pages from being added a canonical url. Useful when combining with other SEO-related meta tags like _noindex_. (Urls should be listed without trailing slash)

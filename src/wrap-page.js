@@ -1,8 +1,15 @@
 const React = require('react');
 const { Helmet } = require('react-helmet');
 
+const isExcluded = (collection, element) =>
+  Array.isArray(collection) && collection.includes(element.replace(/\/+$/, ''));
+
 module.exports = ({ element, props }, pluginOptions) => {
-  if (pluginOptions && pluginOptions.siteUrl) {
+  if (
+    pluginOptions &&
+    pluginOptions.siteUrl &&
+    !isExcluded(pluginOptions.exclude, props.location.pathname)
+  ) {
     let pathname = props.location.pathname || '/';
 
     if (pluginOptions.noTrailingSlash && pathname.endsWith('/'))
