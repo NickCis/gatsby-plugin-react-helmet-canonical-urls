@@ -134,7 +134,13 @@ it('should not set canonical if no siteUrl option is passed', () => {
   expect(link.length).toBe(0);
 });
 
-it('should not set canonical if pathname is excluded', () => {
+test.each([
+  [['/my-pathname']],
+  [['/something', '/my-pathname']],
+  [[/pathname/]],
+  [[/^not/, /pathname/]],
+  [[new RegExp('pathname')]],
+])('should not set canonical if pathname is excluded: %p', exclude => {
   const element = wrap(
     {
       element: 'element',
@@ -148,7 +154,7 @@ it('should not set canonical if pathname is excluded', () => {
     },
     {
       siteUrl: 'http://my-site.com',
-      exclude: ['/my-pathname'],
+      exclude
     }
   );
 

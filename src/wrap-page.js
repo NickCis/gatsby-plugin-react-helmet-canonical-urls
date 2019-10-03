@@ -1,8 +1,18 @@
 const React = require('react');
 const { Helmet } = require('react-helmet');
 
-const isExcluded = (collection, element) =>
-  Array.isArray(collection) && collection.includes(element.replace(/\/+$/, ''));
+const isExcluded = (excludes, element) => {
+  if (!Array.isArray(excludes))
+    return false;
+
+  element = element.replace(/\/+$/, '');
+
+  return excludes.some(exclude => {
+    if (exclude instanceof RegExp)
+      return element.match(exclude);
+    return exclude.includes(element);
+  });
+}
 
 module.exports = ({ element, props }, pluginOptions) => {
   if (
