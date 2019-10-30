@@ -1,6 +1,12 @@
 const React = require('react');
 const { Helmet } = require('react-helmet');
 
+const defaultPluginOptions = {
+  noTrailingSlash: false,
+  stripQueryString: false,
+  stripHash: false,
+};
+
 const isExcluded = (excludes, element) => {
   if (!Array.isArray(excludes))
     return false;
@@ -14,20 +20,25 @@ const isExcluded = (excludes, element) => {
   });
 }
 
-module.exports = ({ element, props }, pluginOptions) => {
-  if (
-    pluginOptions &&
-    pluginOptions.siteUrl &&
-    !isExcluded(pluginOptions.exclude, props.location.pathname)
-  ) {
-    let pathname = props.location.pathname || '/';
+module.exports = ({ element, props: { location } }, pluginOptions = {}) => {
+  const options = Object.assign(defaultPluginOptions, pluginOptions);
 
-    if (pluginOptions.noTrailingSlash && pathname.endsWith('/'))
+  if (
+    options.siteUrl &&
+    !isExcluded(options.exclude, location.pathname)
+  ) {
+    let pathname = location.pathname || '/';
+
+    if (options.noTrailingSlash && pathname.endsWith('/'))
       pathname = pathname.substring(0, pathname.length - 1);
 
-    const myUrl = `${pluginOptions.siteUrl}${pathname}${props.location.search}${
-      props.location.hash
-    }`;
+    let myUrl = `${options.siteUrl}${pathname}`;
+
+    if(!options.stripQueryString)
+      myUrl += location.search;
+
+    if(!options.stripHash)
+      myUrl += location.hash;
 
     return (
       <>
