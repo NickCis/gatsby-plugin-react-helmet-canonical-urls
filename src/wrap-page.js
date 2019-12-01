@@ -3,8 +3,8 @@ const { Helmet } = require('react-helmet');
 
 const defaultPluginOptions = {
   noTrailingSlash: false,
-  stripQueryString: false,
-  stripHash: false,
+  nopQueryString: false,
+  nopHash: false,
 };
 
 const isExcluded = (excludes, element) => {
@@ -21,7 +21,7 @@ const isExcluded = (excludes, element) => {
 }
 
 module.exports = ({ element, props: { location } }, pluginOptions = {}) => {
-  const options = Object.assign(defaultPluginOptions, pluginOptions);
+  const options = Object.assign({}, defaultPluginOptions, pluginOptions);
 
   if (
     options.siteUrl &&
@@ -34,10 +34,10 @@ module.exports = ({ element, props: { location } }, pluginOptions = {}) => {
 
     let myUrl = `${options.siteUrl}${pathname}`;
 
-    if(!options.stripQueryString)
+    if(!options.noQueryString)
       myUrl += location.search;
 
-    if(!options.stripHash)
+    if(!options.noHash)
       myUrl += location.hash;
 
     return (
