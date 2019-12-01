@@ -8,25 +8,20 @@ const defaultPluginOptions = {
 };
 
 const isExcluded = (excludes, element) => {
-  if (!Array.isArray(excludes))
-    return false;
+  if (!Array.isArray(excludes)) return false;
 
   element = element.replace(/\/+$/, '');
 
   return excludes.some(exclude => {
-    if (exclude instanceof RegExp)
-      return element.match(exclude);
+    if (exclude instanceof RegExp) return element.match(exclude);
     return exclude.includes(element);
   });
-}
+};
 
 module.exports = ({ element, props: { location } }, pluginOptions = {}) => {
   const options = Object.assign({}, defaultPluginOptions, pluginOptions);
 
-  if (
-    options.siteUrl &&
-    !isExcluded(options.exclude, location.pathname)
-  ) {
+  if (options.siteUrl && !isExcluded(options.exclude, location.pathname)) {
     let pathname = location.pathname || '/';
 
     if (options.noTrailingSlash && pathname.endsWith('/'))
@@ -34,11 +29,9 @@ module.exports = ({ element, props: { location } }, pluginOptions = {}) => {
 
     let myUrl = `${options.siteUrl}${pathname}`;
 
-    if(!options.noQueryString)
-      myUrl += location.search;
+    if (!options.noQueryString) myUrl += location.search;
 
-    if(!options.noHash)
-      myUrl += location.hash;
+    if (!options.noHash) myUrl += location.hash;
 
     return (
       <>

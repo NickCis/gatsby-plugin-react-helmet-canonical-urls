@@ -1,22 +1,22 @@
-const React = require("react");
-const ReactDOMServer = require("react-dom/server");
-const { Helmet } = require("react-helmet");
-const wrap = require("./wrap-page");
+const React = require('react');
+const ReactDOMServer = require('react-dom/server');
+const { Helmet } = require('react-helmet');
+const wrap = require('./wrap-page');
 
-it("should set canonical", () => {
+it('should set canonical', () => {
   const element = wrap(
     {
-      element: "element",
+      element: 'element',
       props: {
         location: {
-          pathname: "/pathname/",
-          search: "?search",
-          hash: "#hash"
-        }
-      }
+          pathname: '/pathname/',
+          search: '?search',
+          hash: '#hash',
+        },
+      },
     },
     {
-      siteUrl: "http://my-site.com"
+      siteUrl: 'http://my-site.com',
     }
   );
 
@@ -24,23 +24,23 @@ it("should set canonical", () => {
 
   const link = Helmet.renderStatic().link.toComponent();
   expect(link.length).toBe(1);
-  expect(link[0].props.href).toBe("http://my-site.com/pathname/?search#hash");
+  expect(link[0].props.href).toBe('http://my-site.com/pathname/?search#hash');
 });
 
-it("should use a slash as pathname, if it is falsy", () => {
+it('should use a slash as pathname, if it is falsy', () => {
   const element = wrap(
     {
-      element: "element",
+      element: 'element',
       props: {
         location: {
-          pathname: "",
-          search: "?search",
-          hash: "#hash"
-        }
-      }
+          pathname: '',
+          search: '?search',
+          hash: '#hash',
+        },
+      },
     },
     {
-      siteUrl: "http://my-site.com"
+      siteUrl: 'http://my-site.com',
     }
   );
 
@@ -48,26 +48,26 @@ it("should use a slash as pathname, if it is falsy", () => {
 
   const link = Helmet.renderStatic().link.toComponent();
   expect(link.length).toBe(1);
-  expect(link[0].props.href).toBe("http://my-site.com/?search#hash");
+  expect(link[0].props.href).toBe('http://my-site.com/?search#hash');
 });
 
-it("should element set canonial, it should use it", () => {
-  const canonical = "https://this-is-a.canonical.test/more-test";
+it('should element set canonial, it should use it', () => {
+  const canonical = 'https://this-is-a.canonical.test/more-test';
   const element = wrap(
     {
       element: React.createElement(Helmet, {
-        link: [{ rel: "canonical", key: canonical, href: canonical }]
+        link: [{ rel: 'canonical', key: canonical, href: canonical }],
       }),
       props: {
         location: {
-          pathname: "/example/",
-          search: "?search",
-          hash: "#hash"
-        }
-      }
+          pathname: '/example/',
+          search: '?search',
+          hash: '#hash',
+        },
+      },
     },
     {
-      siteUrl: "http://my-site.com"
+      siteUrl: 'http://my-site.com',
     }
   );
 
@@ -75,24 +75,24 @@ it("should element set canonial, it should use it", () => {
 
   const link = Helmet.renderStatic().link.toComponent();
   expect(link.length).toBe(1);
-  expect(link[0].props.href).toBe("https://this-is-a.canonical.test/more-test");
+  expect(link[0].props.href).toBe('https://this-is-a.canonical.test/more-test');
 });
 
-it("should remove trailing slash, if `noTrailingSlash` option is used", () => {
+it('should remove trailing slash, if `noTrailingSlash` option is used', () => {
   const element = wrap(
     {
-      element: "element",
+      element: 'element',
       props: {
         location: {
-          pathname: "/pathname/",
-          search: "?search",
-          hash: "#hash"
-        }
-      }
+          pathname: '/pathname/',
+          search: '?search',
+          hash: '#hash',
+        },
+      },
     },
     {
-      siteUrl: "http://my-site.com",
-      noTrailingSlash: true
+      siteUrl: 'http://my-site.com',
+      noTrailingSlash: true,
     }
   );
 
@@ -100,24 +100,24 @@ it("should remove trailing slash, if `noTrailingSlash` option is used", () => {
 
   const link = Helmet.renderStatic().link.toComponent();
   expect(link.length).toBe(1);
-  expect(link[0].props.href).toBe("http://my-site.com/pathname?search#hash");
+  expect(link[0].props.href).toBe('http://my-site.com/pathname?search#hash');
 });
 
-it("should remove query string, if `noQueryString` option is used", () => {
+it('should remove query string, if `noQueryString` option is used', () => {
   const element = wrap(
     {
-      element: "element",
+      element: 'element',
       props: {
         location: {
-          pathname: "/pathname/",
-          search: "?search",
-          hash: "#hash"
-        }
-      }
+          pathname: '/pathname/',
+          search: '?search',
+          hash: '#hash',
+        },
+      },
     },
     {
-      siteUrl: "http://my-site.com",
-      noQueryString: true
+      siteUrl: 'http://my-site.com',
+      noQueryString: true,
     }
   );
 
@@ -125,24 +125,24 @@ it("should remove query string, if `noQueryString` option is used", () => {
 
   const link = Helmet.renderStatic().link.toComponent();
   expect(link.length).toBe(1);
-  expect(link[0].props.href).toBe("http://my-site.com/pathname/#hash");
+  expect(link[0].props.href).toBe('http://my-site.com/pathname/#hash');
 });
 
-it("should remove hash, if `noHash` option is used", () => {
+it('should remove hash, if `noHash` option is used', () => {
   const element = wrap(
     {
-      element: "element",
+      element: 'element',
       props: {
         location: {
-          pathname: "/pathname/",
-          search: "?search",
-          hash: "#hash"
-        }
-      }
+          pathname: '/pathname/',
+          search: '?search',
+          hash: '#hash',
+        },
+      },
     },
     {
-      siteUrl: "http://my-site.com",
-      noHash: true
+      siteUrl: 'http://my-site.com',
+      noHash: true,
     }
   );
 
@@ -150,15 +150,15 @@ it("should remove hash, if `noHash` option is used", () => {
 
   const link = Helmet.renderStatic().link.toComponent();
   expect(link.length).toBe(1);
-  expect(link[0].props.href).toBe("http://my-site.com/pathname/?search");
+  expect(link[0].props.href).toBe('http://my-site.com/pathname/?search');
 });
 
-it("should not set canonical if no options is passed", () => {
+it('should not set canonical if no options is passed', () => {
   const element = wrap({
-    element: "element",
+    element: 'element',
     props: {
-      location: {}
-    }
+      location: {},
+    },
   });
 
   ReactDOMServer.renderToString(element);
@@ -167,13 +167,13 @@ it("should not set canonical if no options is passed", () => {
   expect(link.length).toBe(0);
 });
 
-it("should not set canonical if no siteUrl option is passed", () => {
+it('should not set canonical if no siteUrl option is passed', () => {
   const element = wrap(
     {
-      element: "element",
+      element: 'element',
       props: {
-        location: {}
-      }
+        location: {},
+      },
     },
     {}
   );
@@ -185,26 +185,26 @@ it("should not set canonical if no siteUrl option is passed", () => {
 });
 
 test.each([
-  [["/my-pathname"]],
-  [["/something", "/my-pathname"]],
+  [['/my-pathname']],
+  [['/something', '/my-pathname']],
   [[/pathname/]],
   [[/^not/, /pathname/]],
-  [[new RegExp("pathname")]]
-])("should not set canonical if pathname is excluded: %p", exclude => {
+  [[new RegExp('pathname')]],
+])('should not set canonical if pathname is excluded: %p', exclude => {
   const element = wrap(
     {
-      element: "element",
+      element: 'element',
       props: {
         location: {
-          pathname: "/my-pathname/",
-          search: "",
-          hash: ""
-        }
-      }
+          pathname: '/my-pathname/',
+          search: '',
+          hash: '',
+        },
+      },
     },
     {
-      siteUrl: "http://my-site.com",
-      exclude
+      siteUrl: 'http://my-site.com',
+      exclude,
     }
   );
 
