@@ -1,6 +1,6 @@
 {
   "name": "gatsby-plugin-react-helmet-canonical-urls",
-  "version": "1.2.0",
+  "version": "1.4.0",
   "description": "Add canonical links to HTML pages Gatsby generates using React Helmet.",
   "main": "index.js",
   "scripts": {
