@@ -3,8 +3,8 @@ const { Helmet } = require('react-helmet');
 
 const defaultPluginOptions = {
   noTrailingSlash: false,
-  nopQueryString: false,
-  nopHash: false,
+  noQueryString: false,
+  noHash: false,
 };
 
 const isExcluded = (excludes, element) => {
