@@ -1,5 +1,6 @@
 const React = require('react');
 const { Helmet } = require('react-helmet');
+const minimatch = require("minimatch");
 
 const defaultPluginOptions = {
   noTrailingSlash: false,
@@ -14,9 +15,12 @@ const isExcluded = (excludes, element) => {
 
   return excludes.some(exclude => {
     if (exclude instanceof RegExp) return element.match(exclude);
-    return exclude.includes(element);
+    return minimatch(withoutTrailingSlash(element), withoutTrailingSlash(exclude));
   });
 };
+
+const withoutTrailingSlash = path =>
+  path === `/` ? path : path.replace(/\/$/, ``)
 
 module.exports = ({ element, props: { location } }, pluginOptions = {}) => {
   const options = Object.assign({}, defaultPluginOptions, pluginOptions);
